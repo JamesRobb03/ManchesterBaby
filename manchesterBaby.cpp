@@ -27,7 +27,7 @@ class ManchesterBaby
 
 		bool load();
 
-		void display();
+		void display(); //harry
 
 		void getInstructions();
 		int fetch();
