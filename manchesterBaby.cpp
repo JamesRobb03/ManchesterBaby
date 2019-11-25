@@ -108,3 +108,20 @@ void ManchesterBaby::convertToBinary(int decimal)
   //reverse(binary, binary+SIZE);
 
 }
+
+//needs tested once everything else done 
+//STO - store memory address in the store 
+void ManchesterBaby::STO(int addressToStore)
+{
+  cout << "Store memory address: " << addressToStore << endl;
+
+  
+  cout << "Memory is at address: "
+  //loop through store and assign
+  for (int i =0; i < SIZE; i++)
+  {
+    Store[addressToStore][i] = Accumulator[i];
+    //cout <<  Store[addressToStore][i] << endl;
+  }
+
+}
