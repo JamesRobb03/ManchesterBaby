@@ -111,8 +111,9 @@ bool ManchesterBaby::load()
       cout << "Stored: " << fileline << endl;
     
     }
-
+	
     file.close();
+    return true;
 }
 
 void ManchesterBaby::display()
