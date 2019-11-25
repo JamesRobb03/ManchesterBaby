@@ -62,7 +62,10 @@ ManchesterBaby::ManchesterBaby(){
 	}
 
 	cout<<"Manchester Baby Created and Initialised"<<endl;
+}
 
+ManchesterBaby::~ManchesterBaby(){
+  cout<<"\n Manchester Baby Stopped"<<endl;
 }
 
 void ManchesterBaby::display()
