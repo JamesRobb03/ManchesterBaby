@@ -37,7 +37,7 @@ class ManchesterBaby
 		void JMP();
 		void JRP();
 		void LDN();
-		void STO(); //skye
+		void STO(int addressToStore); //skye
 		void SUB();
 		void CMP();
 		void STP();
@@ -67,7 +67,7 @@ ManchesterBaby::ManchesterBaby(){
 
 void ManchesterBaby::display()
 {
-  
+
 }
 
 int ManchesterBaby::convertToDecimal(int binary[])
@@ -139,7 +139,7 @@ void ManchesterBaby::STO(int addressToStore)
   cout << "Store memory address: " << addressToStore << endl;
 
   
-  cout << "Memory is at address: "
+  cout << "Memory is at address: ";
   //loop through store and assign
   for (int i =0; i < SIZE; i++)
   {
