@@ -23,7 +23,7 @@ class ManchesterBaby
 		~ManchesterBaby();
 
 		int convertToDecimal(int binary[]);
-		void convertToBinary(int decimal);
+		void convertToBinary(int decimal, int binary[]);
 
 		bool load();
 
@@ -44,6 +44,24 @@ class ManchesterBaby
 };
 
 ManchesterBaby::ManchesterBaby(){
+	cout<<"Creating Manchester Baby."<<endl;
+	//init arrays
+	for (int i = 0; i < 32; ++i)
+	{
+		for (int j = 0; j < 32; ++j)
+		{
+			Store[i][j] = 0;
+		}
+	}
+
+	for (int i = 0; i < SIZE; ++i)
+	{
+		Accumulator[i] = 0;
+		CI[i] = 0;
+		PI[i] = 0;
+	}
+
+	cout<<"Manchester Baby Created and Initialised"<<endl;
 
 }
 
@@ -84,7 +102,7 @@ int ManchesterBaby::convertToDecimal(int binary[])
 
 
 //binary converter to store decimal numbers as binary in the global variable for future functions to use
-void ManchesterBaby::convertToBinary(int decimal)
+void ManchesterBaby::convertToBinary(int decimal, int binary[])
 {
 
   //add the remainers to array
