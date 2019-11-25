@@ -65,6 +65,11 @@ ManchesterBaby::ManchesterBaby(){
 
 }
 
+void ManchesterBaby::display()
+{
+  
+}
+
 int ManchesterBaby::convertToDecimal(int binary[])
 {
 
