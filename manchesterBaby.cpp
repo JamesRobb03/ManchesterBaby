@@ -37,7 +37,7 @@ class ManchesterBaby
 		void JMP();
 		void JRP();
 		void LDN();
-		void STO();
+		void STO(); //skye
 		void SUB();
 		void CMP();
 		void STP();
