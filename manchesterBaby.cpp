@@ -4,15 +4,24 @@
 
 using namespace std;
 
+
+#define SIZE 32
+
 class ManchesterBaby
 {
 
 	public:
+		//Variables
+		int Store[SIZE][SIZE];
+		int Accumulator[SIZE];
+		int CI[SIZE]; // holds a number which is an address.
+		int PI[SIZE]; // holds a number which is an opcode. (plus an operand in soe cases)
+
+
 		//constructor & deconstructor
 		ManchesterBaby();
 		~ManchesterBaby();
 
-		void init();
 		int convertToDecimal(int binary[]);
 		void convertToBinary(int decimal);
 
@@ -33,6 +42,10 @@ class ManchesterBaby
 		void CMP();
 		void STP();
 };
+
+ManchesterBaby::ManchesterBaby(){
+
+}
 
 int ManchesterBaby::convertToDecimal(int binary[])
 {
