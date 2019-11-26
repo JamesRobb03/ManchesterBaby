@@ -25,7 +25,7 @@ class ManchesterBaby
 		int convertToDecimal(int binary[]);
 		void convertToBinary(int decimal, int binary[]);
 
-		bool load();
+		bool load(); //skye
 
 		void display(); //harry
 
