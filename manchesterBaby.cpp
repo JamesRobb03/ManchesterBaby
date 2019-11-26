@@ -62,7 +62,58 @@ ManchesterBaby::ManchesterBaby(){
 	}
 
 	cout<<"Manchester Baby Created and Initialised"<<endl;
+}
 
+ManchesterBaby::~ManchesterBaby(){
+  cout<<"\n Manchester Baby Stopped"<<endl;
+}
+
+//load program from file into memory (store)
+bool ManchesterBaby::load()
+{
+  string fileline;
+  ifstream file;
+  file.open("assembleroutput.txt");
+
+  if (file.fail())
+  {
+    //the open failed 
+    cout << "ERROR: Could not open the file assembleroutput.txt" << endl;
+    return false;
+  }
+
+  cout << "Loading program from assembler into memory..." << endl;
+
+   int lines = 0;
+      
+    //loop through lines of file
+    while(getline(file, fileline))
+    {
+
+      lines++;  
+
+      // GITHUB Example starts at i = 5 
+      // first 5 bits are the OPERAND? But I'm still putting it in the store here
+      for(int i=0; i < SIZE; i++)
+      {
+        char binary = fileline.at(i);
+        if(binary=='1')
+        {
+          Store[lines][i]= 1;
+        }
+        else
+        {
+          Store[lines][i]= 0;
+        }
+      }
+
+
+      cout << "Stored: " << fileline << endl;
+    
+    }
+	
+    file.close();
+    return true;
 }
 
 void ManchesterBaby::display()
