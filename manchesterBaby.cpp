@@ -29,10 +29,10 @@ class ManchesterBaby
 
 		void display(); //harry
 
-		void getInstructions();
-		int fetch();
-		int decode();
-		int execute();
+    void incrementCI(); //skye
+		int fetch(); //james
+		int decode(); //james
+		int execute(); //harry
 
 		void JMP();
 		void JRP();
