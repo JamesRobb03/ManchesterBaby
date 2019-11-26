@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include<fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -30,7 +32,7 @@ class ManchesterBaby
 		void display(); //harry
 
     void incrementCI(); //skye
-		int fetch(); //james
+		void fetch(int); //james
 		int decode(); //james
 		int execute(); //harry
 
@@ -65,7 +67,7 @@ ManchesterBaby::ManchesterBaby(){
 }
 
 ManchesterBaby::~ManchesterBaby(){
-  cout<<"\n Manchester Baby Stopped"<<endl;
+  cout<<"\nManchester Baby Stopped"<<endl;
 }
 
 //load program from file into memory (store)
@@ -73,7 +75,7 @@ bool ManchesterBaby::load()
 {
   string fileline;
   ifstream file;
-  file.open("assembleroutput.txt");
+  file.open("BabyTest1-MC.txt");
 
   if (file.fail())
   {
@@ -183,6 +185,19 @@ void ManchesterBaby::convertToBinary(int decimal, int binary[])
 
 }
 
+void ManchesterBaby::fetch(int address){
+
+  cout<<"Fetching address: "<<address<<endl;
+  cout<<"PI: ";
+  for (int i = 0; i < SIZE; ++i)
+  {
+    PI[i] = Store[address][i];
+    cout<<PI[i];
+  }
+  cout<<""<<endl;
+}
+
+
 //needs tested once everything else done 
 //STO - store memory address in the store 
 void ManchesterBaby::STO(int addressToStore)
@@ -198,4 +213,13 @@ void ManchesterBaby::STO(int addressToStore)
     //cout <<  Store[addressToStore][i] << endl;
   }
 
+}
+
+int main(int argc, char const *argv[])
+{
+  ManchesterBaby myBaby;
+  myBaby.load();
+  myBaby.fetch(2);
+  
+  return 0;
 }
