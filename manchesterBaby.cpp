@@ -18,28 +18,28 @@ class ManchesterBaby
 		int Accumulator[SIZE];
 		int CI[SIZE]; // holds a number which is an address.
 		int PI[SIZE]; // holds a number which is an opcode. (plus an operand in soe cases)
-
+    bool runStatus = true;
 
 		//constructor & deconstructor
 		ManchesterBaby();
 		~ManchesterBaby();
 
-		int convertToDecimal(int binary[]);
+		int convertToDecimal(int binary[], int size);
 		void convertToBinary(int decimal, int binary[]);
 
-		bool load(); //skye
+		bool load(); 
 
 		void display(); //harry
 
     void incrementCI(); //skye
-		void fetch(int); //james
-		int decode(); //james
+		void fetch(int); 
+		int decode(int); //james
 		int execute(); //harry
 
 		void JMP();
 		void JRP();
 		void LDN();
-		void STO(int addressToStore); //skye
+		void STO(int addressToStore); 
 		void SUB();
 		void CMP();
 		void STP();
@@ -123,13 +123,13 @@ void ManchesterBaby::display()
 
 }
 
-int ManchesterBaby::convertToDecimal(int binary[])
+int ManchesterBaby::convertToDecimal(int binary[], int size)
 {
 
   int decimal = 0;
 
 
-  for (int i=0; i<SIZE; i++)
+  for (int i=0; i<size; i++)
   {
     // for each binary number 
     if (binary[i] == 1)
@@ -197,6 +197,15 @@ void ManchesterBaby::fetch(int address){
   cout<<""<<endl;
 }
 
+//returns a number between 0-7. instruction depends on the number.
+int ManchesterBaby::decode(int address){
+  cout<<"Decoding address: "<<address<<endl;
+  int Opcode[] = {PI[13], PI[14], PI[15]};
+  int returnOpcode = convertToDecimal(Opcode, 3);
+  cout<<"Opcode = "<<returnOpcode<<endl;
+  return returnOpcode;
+
+}
 
 //needs tested once everything else done 
 //STO - store memory address in the store 
@@ -215,11 +224,18 @@ void ManchesterBaby::STO(int addressToStore)
 
 }
 
+
+
 int main(int argc, char const *argv[])
 {
   ManchesterBaby myBaby;
   myBaby.load();
-  myBaby.fetch(2);
+  for (int i = 0; i < 10; ++i)
+  {
+    myBaby.fetch(i);
+    myBaby.decode(i);
+  }
+  
   
   return 0;
 }
