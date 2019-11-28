@@ -40,12 +40,12 @@ class ManchesterBaby
 		int execute(); //harry
 
 		void JMP(int);//skye
-		void JRP();
-		void LDN();
+		void JRP(); 
+		void LDN(); //james
 		void STO(int); //skye
-		void SUB();
-		void CMP();
-		void STP();
+		void SUB(); 
+		void CMP(); 
+		void STP(); //james
 };
 
 ManchesterBaby::ManchesterBaby(){
@@ -254,6 +254,10 @@ void ManchesterBaby::JMP(int location)
     cout << CI[i];
   }
   cout << endl;
+
+}
+
+void ManchesterBaby::CMP(){
 
 }
 
