@@ -34,6 +34,7 @@ class ManchesterBaby
     void incrementCI(); //skye
 		void fetch(int); 
 		int decode(int); //james
+    int getOperand(int);//james
 		int execute(); //harry
 
 		void JMP();
@@ -48,6 +49,8 @@ class ManchesterBaby
 ManchesterBaby::ManchesterBaby(){
 	cout<<"Creating Manchester Baby."<<endl;
 	//init arrays
+
+  //create store
 	for (int i = 0; i < 32; ++i)
 	{
 		for (int j = 0; j < 32; ++j)
@@ -56,6 +59,7 @@ ManchesterBaby::ManchesterBaby(){
 		}
 	}
 
+  //create Accumulator, ci and pi
 	for (int i = 0; i < SIZE; ++i)
 	{
 		Accumulator[i] = 0;
@@ -92,8 +96,6 @@ bool ManchesterBaby::load()
     while(getline(file, fileline))
     {
 
-      lines++;  
-
       // GITHUB Example starts at i = 5 
       // first 5 bits are the OPERAND? But I'm still putting it in the store here
       for(int i=0; i < SIZE; i++)
@@ -109,7 +111,7 @@ bool ManchesterBaby::load()
         }
       }
 
-
+      lines++; 
       cout << "Stored: " << fileline << endl;
     
     }
@@ -224,6 +226,14 @@ void ManchesterBaby::STO(int addressToStore)
 
 }
 
+//function which gets the operand.
+int ManchesterBaby::getOperand(int address){
+  cout<<"Getting Operand of address: "<<address<<endl;
+  int Operand[] = {PI[0], PI[1], PI[2], PI[3], PI[04]};
+  int returnOperand = convertToDecimal(Operand, 5);
+  cout<<"Operand = "<<returnOperand<<endl;
+  return returnOperand;
+}
 
 
 int main(int argc, char const *argv[])
@@ -232,8 +242,12 @@ int main(int argc, char const *argv[])
   myBaby.load();
   for (int i = 0; i < 10; ++i)
   {
+    cout<<" "<<endl;
     myBaby.fetch(i);
     myBaby.decode(i);
+    myBaby.getOperand(i);
+    cout<<" "<<endl;
+
   }
   
   
