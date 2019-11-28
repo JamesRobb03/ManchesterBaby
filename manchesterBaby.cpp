@@ -22,19 +22,19 @@ class ManchesterBaby
     bool runStatus = true;
 
     //constructor & deconstructor
-    ManchesterBaby();
-    ~ManchesterBaby();
+    ManchesterBaby(); //james
+    ~ManchesterBaby();//james
 
-		int convertToDecimal(int binary[], int size);
-		void convertToBinary(int decimal, int binary[]);
+		int convertToDecimal(int binary[], int size); //skye
+		void convertToBinary(int decimal, int binary[]);//skye
 
-		bool load(); 
+		bool load(); //skye
 
     void display(); //harry
 
     void incrementCI(); //skye
 
-		void fetch(int); 
+		void fetch(int); //james
 		int decode(int); //james
     int getOperand(int);//james
 		int execute(); //harry
