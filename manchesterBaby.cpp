@@ -40,8 +40,8 @@ class ManchesterBaby
 		int execute(); //harry
 
 		void JMP(int);//skye
-		void JRP(); 
-		void LDN(); //james
+		void JRP(); //skye
+		void LDN(int); //james
 		void STO(int); //skye
 		void SUB(); 
 		void CMP(); 
@@ -164,7 +164,6 @@ int ManchesterBaby::convertToDecimal(int binary[], int size)
 
 }
 
-
 //binary converter to store decimal numbers as binary in the global variable for future functions to use
 void ManchesterBaby::convertToBinary(int decimal, int binary[])
 {
@@ -172,18 +171,13 @@ void ManchesterBaby::convertToBinary(int decimal, int binary[])
   //add the remainers to array
   for (int i=0; i<SIZE; i++)
   {
-   if (decimal != 0)
-   {
-    // %2 gets remainder of dividing by 2
-    binary[i]=decimal%2;
-   
-    decimal = decimal /2;
-   }
-   else
-   {
-    //add 0 to make up the size
-    binary[i]=0;
-   }
+    int k = decimal >>i;
+    if (k & 1)
+    {
+      binary[i] = 1;
+    }else{
+      binary[i] = 0;
+    }
   }
 
   //use this to make it read right to left 
@@ -257,14 +251,45 @@ void ManchesterBaby::JMP(int location)
 
 }
 
-void ManchesterBaby::CMP(){
+//load accumulator with negative form of store content
+//uses two compliment to make negative. flips the bits then adds 1.
+void ManchesterBaby::LDN(int address){
 
+  cout<<".....USING LDN....."<<endl;
+  
+  //adds flipped bits to accumulator
+  for (int i = 0; i < SIZE; ++i)
+  {
+    if (Store[address][i] == 1)
+    {
+      Accumulator[i] = 0;
+    }else{
+      Accumulator[i] = 1;
+    }
+  }
+  
+  //converts accumulator to decimal and then adds one to it.
+  int afterFlip = convertToDecimal(Accumulator, SIZE);
+  afterFlip++;
+
+  //converts negative decimal value to binary array
+  convertToBinary(afterFlip, Accumulator);
+
+  //prints out final accumulator
+  cout<<"Accumulator = ";
+  for (int i = 0; i < SIZE; ++i)
+  {
+    cout<<Accumulator[i];
+  }
+  cout<<""<<endl;
 }
 
+//functions which stops the baby from running
 void ManchesterBaby::STP()
 {
   runStatus = false;
 }
+
 
 
 int main(int argc, char const *argv[])
@@ -277,6 +302,7 @@ int main(int argc, char const *argv[])
     myBaby.fetch(i);
     myBaby.decode(i);
     myBaby.getOperand(i);
+    myBaby.LDN(i);
     cout<<" "<<endl;
   }
   
