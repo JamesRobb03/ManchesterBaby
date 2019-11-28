@@ -257,6 +257,11 @@ void ManchesterBaby::JMP(int location)
 
 }
 
+void ManchesterBaby::STP()
+{
+  runStatus = false;
+}
+
 
 int main(int argc, char const *argv[])
 {
