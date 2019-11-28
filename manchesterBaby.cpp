@@ -40,7 +40,7 @@ class ManchesterBaby
 		int execute(); //harry
 
 		void JMP(int);//skye
-		void JRP(); //skye
+		void JRP(int); //skye
 		void LDN(int); //james
 		void STO(int); //skye
 		void SUB(int);//james 
@@ -243,6 +243,169 @@ void ManchesterBaby::JMP(int location)
     CI[i] = Store[location][i];
   }
   cout<<"CI: ";
+  for (int i =0; i < SIZE; i++)
+  {
+    cout << CI[i];
+  }
+  cout << endl;
+
+}
+
+//CI = CI + S 
+//add the content of the store at specified address to the CI
+void ManchesterBaby::JRP(int address)
+{
+  cout<<".....USING JRP....."<<endl;
+  cout<<"CI before = ";
+  for (int i =0; i < SIZE; i++)
+  {
+    cout << CI[i];
+  }
+  cout << endl;
+  cout<<"Store line before = ";
+  for (int i =0; i < SIZE; i++)
+  {
+    cout << Store[address][i];
+  }
+  cout << endl;
+
+  //to hold the negative values
+  int negativeCI[SIZE];
+  int negativeS[SIZE];
+
+  int toggledCI;
+  int toggledS;
+
+  //result of adding
+  int result;
+
+  //check if the MSB (RIGHT bit in this case) is 1 or 0 
+
+  /* 4 cases: CI negative, S negative
+              CI negative, S positive
+              CI positive, S negative
+              CI positive, S positive
+  */
+
+  //if 1 the value is negative - need to toggle, add 1
+  if (CI[SIZE-1] == 1)
+  {
+    //toggle
+    for(int i=0; i<SIZE; i++)
+    {
+      if (CI[i] == 1)
+      {
+        negativeCI[i] = 0;
+      }
+      else
+      {
+        negativeCI[i] = 1;
+      }
+    }
+    //add 1
+    toggledCI = convertToDecimal(negativeCI, SIZE);
+    toggledCI++;
+
+    //check if S is negative 
+    if (Store[address][SIZE-1] == 1)
+    {
+      //toggle
+      for(int i=0; i<SIZE; i++)
+      {
+        if (Store[address][i] == 1)
+        {
+          negativeS[i] = 0;
+        }
+        else
+        {
+          negativeS[i] = 1;
+        }
+      }
+      //add 1
+      toggledS = convertToDecimal(negativeS, SIZE);
+      toggledS++;
+
+      //add the 2 negatives
+      result = -toggledCI - toggledS;
+
+    }
+    else //CI negative, S positive
+    {
+      int decimalS = convertToDecimal(Store[address], SIZE);
+
+      //add negative CI and positive
+      result = -toggledCI + decimalS;
+    }
+  }
+  else //CI positive
+  {
+    int decimalCI = convertToDecimal(CI, SIZE);
+
+    //check if S is negative 
+    if (Store[address][SIZE-1] == 1)
+    {
+      //toggle
+      for(int i=0; i<SIZE; i++)
+      {
+        if (Store[address][i] == 1)
+        {
+          negativeS[i] = 0;
+        }
+        else
+        {
+          negativeS[i] = 1;
+        }
+      }
+      //add 1
+      toggledS = convertToDecimal(negativeS, SIZE);
+      toggledS++;
+
+      //add the positive CI and negative S
+      result = decimalCI - toggledS;
+    }
+    else //S positive
+    {
+      int decimalS = convertToDecimal(Store[address], SIZE);
+
+      //add positive CI and S
+      result = decimalCI + decimalS;
+    }
+  }
+
+
+  //convert result to binary to assign to CI
+  //check if result is negative
+  if (result < 0)
+  {
+      int binaryResult[SIZE];
+      convertToBinary(result, binaryResult);
+      int toggledResult[SIZE];
+      //toggle
+      for (int i=0; i<SIZE;i++)
+      {
+        if (binaryResult[i] == 1)
+        {
+          toggledResult[i] = 0;
+        }
+        else
+        {
+          toggledResult[i] = 1;
+        }
+      }
+      //add 1
+      int decimalResultToggled = convertToDecimal(toggledResult, SIZE);
+      decimalResultToggled++;
+
+      convertToBinary(decimalResultToggled, CI);
+
+  }
+  else
+  {
+    convertToBinary(result, CI);
+  }
+
+
+  cout<<"CI = ";
   for (int i =0; i < SIZE; i++)
   {
     cout << CI[i];
