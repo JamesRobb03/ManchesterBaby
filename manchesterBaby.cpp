@@ -39,10 +39,10 @@ class ManchesterBaby
     int getOperand(int);//james
 		int execute(); //harry
 
-		void JMP();
+		void JMP();//skye
 		void JRP();
 		void LDN();
-		void STO(int addressToStore); 
+		void STO(int addressToStore); //skye
 		void SUB();
 		void CMP();
 		void STP();
@@ -75,26 +75,6 @@ ManchesterBaby::ManchesterBaby(){
 
 ManchesterBaby::~ManchesterBaby(){
   cout<<"\nManchester Baby Stopped"<<endl;
-}
-
-
-//CI = S 
-//set CI to content of Store location  
-void ManchesterBaby::JMP(int location)
-{
-  cout<<"JMP - setting CI to content of Store at "<<location<<endl;
- 
-  for (int i =0; i < SIZE; i++)
-  {
-    CI[i] = Store[location][i];
-  }
-  cout<<"CI: ";
-  for (int i =0; i < SIZE; i++)
-  {
-    cout << CI[i];
-  }
-  cout << endl;
-
 }
 
 
@@ -222,7 +202,6 @@ void ManchesterBaby::fetch(int address){
   }
   cout<<""<<endl;
 }
-
 
 //returns a number between 0-7. instruction depends on the number.
 int ManchesterBaby::decode(int address){
