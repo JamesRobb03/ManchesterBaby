@@ -286,6 +286,7 @@ void ManchesterBaby::LDN(int address){
 
 //subtract content of Store location from Accumulator
 void ManchesterBaby::SUB(int address){ 
+  cout<<".....USING SUB....."<<endl;
   //gets the decimal version of the store value.
   int tempStore[SIZE];
 
@@ -297,7 +298,12 @@ void ManchesterBaby::SUB(int address){
 
   //gets the decimal version of the accumulator.
   int AccuDec = convertToDecimal(Accumulator, SIZE);
-  
+
+  //prints out values
+  cout<<"STORE VALUE = "<<storeDec<<endl;
+  cout<<"ACCUMULATOR VALUE = "<<AccuDec<<endl;
+  AccuDec = AccuDec - storeDec;
+  cout<<"ACCUMULATOR VALUE AFTER SUBTRACTION = "<<AccuDec<<endl;
 
 }
 //functions which stops the baby from running
@@ -319,6 +325,7 @@ int main(int argc, char const *argv[])
     myBaby.decode(i);
     myBaby.getOperand(i);
     myBaby.LDN(i);
+    myBaby.SUB(i);
     cout<<" "<<endl;
   }
   
