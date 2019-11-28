@@ -39,10 +39,10 @@ class ManchesterBaby
     int getOperand(int);//james
 		int execute(); //harry
 
-		void JMP();//skye
+		void JMP(int);//skye
 		void JRP();
 		void LDN();
-		void STO(int addressToStore); //skye
+		void STO(int); //skye
 		void SUB();
 		void CMP();
 		void STP();
