@@ -208,6 +208,14 @@ int ManchesterBaby::decode(int address){
   return returnOpcode;
 
 }
+//function which gets the operand.
+int ManchesterBaby::getOperand(int address){
+  cout<<"Getting Operand of address: "<<address<<endl;
+  int Operand[] = {PI[0], PI[1], PI[2], PI[3], PI[04]};
+  int returnOperand = convertToDecimal(Operand, 5);
+  cout<<"Operand = "<<returnOperand<<endl;
+  return returnOperand;
+}
 
 //needs tested once everything else done 
 //STO - store memory address in the store 
@@ -226,13 +234,23 @@ void ManchesterBaby::STO(int addressToStore)
 
 }
 
-//function which gets the operand.
-int ManchesterBaby::getOperand(int address){
-  cout<<"Getting Operand of address: "<<address<<endl;
-  int Operand[] = {PI[0], PI[1], PI[2], PI[3], PI[04]};
-  int returnOperand = convertToDecimal(Operand, 5);
-  cout<<"Operand = "<<returnOperand<<endl;
-  return returnOperand;
+//CI = S 
+//set CI to content of Store location  
+void ManchesterBaby::JMP(int location)
+{
+  cout<<"JMP - setting CI to content of Store at "<<location<<endl;
+ 
+  for (int i =0; i < SIZE; i++)
+  {
+    CI[i] = Store[location][i];
+  }
+  cout<<"CI: ";
+  for (int i =0; i < SIZE; i++)
+  {
+    cout << CI[i];
+  }
+  cout << endl;
+
 }
 
 
