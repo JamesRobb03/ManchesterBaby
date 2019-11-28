@@ -303,7 +303,16 @@ void ManchesterBaby::SUB(int address){
   cout<<"STORE VALUE = "<<storeDec<<endl;
   cout<<"ACCUMULATOR VALUE = "<<AccuDec<<endl;
   AccuDec = AccuDec - storeDec;
-  cout<<"ACCUMULATOR VALUE AFTER SUBTRACTION = "<<AccuDec<<endl;
+  cout<<"ACCUMULATOR AFTER SUBTRACTION = ";
+
+  convertToBinary(AccuDec, Accumulator);
+  for (int i = 0; i < SIZE; ++i)
+  {
+    cout<<Accumulator[i];
+  }
+
+  cout<<""<<endl;
+
 
 }
 //functions which stops the baby from running
@@ -324,8 +333,6 @@ int main(int argc, char const *argv[])
     myBaby.fetch(i);
     myBaby.decode(i);
     myBaby.getOperand(i);
-    myBaby.LDN(i);
-    myBaby.SUB(i);
     cout<<" "<<endl;
   }
   
