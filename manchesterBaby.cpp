@@ -132,7 +132,7 @@ void ManchesterBaby::display()
   cout << "==============|=======================|========|==============================================|" <<  endl;
   cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
 
-  for(int i = 0; i < 32; ++i)
+  for(int i = 0; i < 32; i++)
   {
     if((i)<10)
       cout << " " << (i) << "  ";
@@ -171,7 +171,7 @@ void ManchesterBaby::display()
   cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
 
   cout << " Current Instruction ";
-  for(int i = 0; i < 32; ++i)
+  for(int i = 0; i < 32; i++)
   {
       if(CI[i] == 0)
       {
@@ -187,7 +187,7 @@ void ManchesterBaby::display()
   if(runStatus == true)
   {
     cout << " PI ";
-    for(int i = 0; i < 32; ++i)
+    for(int i = 0; i < 32; i++)
       {
           if(PI[i] == 0)
           {
