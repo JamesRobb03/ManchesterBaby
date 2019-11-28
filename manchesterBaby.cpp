@@ -210,7 +210,39 @@ int ManchesterBaby::decode(int address){
   cout<<"Decoding address: "<<address<<endl;
   int Opcode[] = {PI[13], PI[14], PI[15]};
   int returnOpcode = convertToDecimal(Opcode, 3);
-  cout<<"Opcode = "<<returnOpcode<<endl;
+  if (returnOpcode == 0)
+  {
+    cout<<"Opcode = JMP"<<endl;
+  }
+  else if (returnOpcode == 1)
+  {
+    cout<<"Opcode = JRP"<<endl;
+  }
+  else if (returnOpcode == 2)
+  {
+    cout<<"Opcode = LDN"<<endl;
+  }
+  else if (returnOpcode == 3)
+  {
+    cout<<"Opcode = STO"<<endl;
+  }
+  else if (returnOpcode == 4)
+  {
+    cout<<"Opcode = SUB"<<endl;
+  }
+  else if (returnOpcode == 5)
+  {
+    cout<<"Opcode = SUB"<<endl;
+  }
+  else if (returnOpcode == 6)
+  {
+    cout<<"Opcode = CMP"<<endl;
+  }
+  else if (returnOpcode == 7)
+  {
+    cout<<"Opcode = STP"<<endl;
+  }
+
   return returnOpcode;
 
 }
@@ -266,6 +298,8 @@ int ManchesterBaby::execute(int opcode, int operand){
 
 void ManchesterBaby::STO(int addressToStore)
 {
+
+  cout<<".....USING STO....."<<endl;
   cout << "Store accumulator at: " << addressToStore << endl;
   
   cout << "Stored: ";
@@ -547,6 +581,7 @@ int main(int argc, char const *argv[])
     int opcode = myBaby.decode(index);
     int operand = myBaby.getOperand(index);
     myBaby.execute(opcode, operand);
+    cin.get();
     cout<<" "<<endl;
   }
   return 0;
