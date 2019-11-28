@@ -183,6 +183,22 @@ void ManchesterBaby::display()
       }
   }
   cout << endl;
+
+  if(runStatus == true)
+  {
+    cout << " PI ";
+    for(int i = 0; i < 32; ++i)
+      {
+          if(PI[i] == 0)
+          {
+            cout << " o ";
+          }
+          else if(PI[i] == 1)
+          {
+            cout << " X ";
+          }
+      }
+  }
 }
 
 int ManchesterBaby::convertToDecimal(int binary[], int size)
