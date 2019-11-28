@@ -32,19 +32,19 @@ class ManchesterBaby
 
     void display(); //harry
 
-    void incrementCI(); //skye
+    int incrementCI(); //skye
 
 		void fetch(int); //james
 		int decode(int); //james
     int getOperand(int);//james
-		int execute(); //harry
+		int execute(int, int); //james
 
 		void JMP(int);//skye
 		void JRP(int); //skye
 		void LDN(int); //james
 		void STO(int); //skye
 		void SUB(int);//james 
-		void CMP(); 
+		void CMP(); //harry
 		void STP(); //james
 };
 
@@ -185,6 +185,14 @@ void ManchesterBaby::convertToBinary(int decimal, int binary[])
 
 }
 
+int ManchesterBaby::incrementCI(){
+  int CIdec = convertToDecimal(CI, SIZE);
+  CIdec++;
+  convertToBinary(CIdec, CI);
+  return CIdec;
+}
+
+
 void ManchesterBaby::fetch(int address){
 
   cout<<"Fetching address: "<<address<<endl;
@@ -214,6 +222,44 @@ int ManchesterBaby::getOperand(int address){
   cout<<"Operand = "<<returnOperand<<endl;
   return returnOperand;
 }
+
+int ManchesterBaby::execute(int opcode, int operand){
+  
+  if (opcode == 0)
+  {
+    JMP(operand);
+  }
+  else if (opcode == 1)
+  {
+    JRP(operand);
+  }
+  else if (opcode == 2)
+  {
+    LDN(operand);
+  }
+  else if (opcode == 3)
+  {
+    STO(operand);
+  }
+  else if (opcode == 4)
+  {
+    SUB(operand);
+  }
+  else if (opcode == 5)
+  {
+    SUB(operand);
+  }
+  else if (opcode == 6)
+  {
+    CMP();
+  }
+  else if (opcode == 7)
+  {
+    STP();
+  }
+  return 0;
+}
+  
 
 //needs tested once everything else done 
 //STO - store memory address in the store 
@@ -476,28 +522,32 @@ void ManchesterBaby::SUB(int address){
 
   cout<<""<<endl;
 
-
 }
+
+void ManchesterBaby::CMP()
+{
+  cout<<"CMP function"<<endl;
+}
+
 //functions which stops the baby from running
 void ManchesterBaby::STP()
 {
+  cout<<".....STP....."<<endl;
   runStatus = false;
 }
-
-
 
 int main(int argc, char const *argv[])
 {
   ManchesterBaby myBaby;
   myBaby.load();
-  for (int i = 0; i < 10; ++i)
-  {
+  while(myBaby.runStatus == true){
     cout<<" "<<endl;
-    myBaby.fetch(i);
-    myBaby.decode(i);
-    myBaby.getOperand(i);
+    int index = myBaby.incrementCI();
+    myBaby.fetch(index);
+    int opcode = myBaby.decode(index);
+    int operand = myBaby.getOperand(index);
+    myBaby.execute(opcode, operand);
     cout<<" "<<endl;
   }
-  
   return 0;
 }
