@@ -26,7 +26,7 @@ class ManchesterBaby
     ~ManchesterBaby();//james
 
 		int convertToDecimal(int binary[], int size); //skye
-		void convertToBinary(int decimal, int binary[]);//skye
+		void convertToBinary(int decimal, int binary[]);//james
 
 		bool load(); //skye
 
@@ -43,7 +43,7 @@ class ManchesterBaby
 		void JRP(); //skye
 		void LDN(int); //james
 		void STO(int); //skye
-		void SUB(); 
+		void SUB(int);//james 
 		void CMP(); 
 		void STP(); //james
 };
@@ -256,7 +256,7 @@ void ManchesterBaby::JMP(int location)
 void ManchesterBaby::LDN(int address){
 
   cout<<".....USING LDN....."<<endl;
-  
+
   //adds flipped bits to accumulator
   for (int i = 0; i < SIZE; ++i)
   {
@@ -284,6 +284,22 @@ void ManchesterBaby::LDN(int address){
   cout<<""<<endl;
 }
 
+//subtract content of Store location from Accumulator
+void ManchesterBaby::SUB(int address){ 
+  //gets the decimal version of the store value.
+  int tempStore[SIZE];
+
+  for (int i = 0; i < SIZE; ++i)
+  {
+    tempStore[i] = Store[address][i];
+  }
+  int storeDec = convertToDecimal(tempStore, SIZE);
+
+  //gets the decimal version of the accumulator.
+  int AccuDec = convertToDecimal(Accumulator, SIZE);
+  
+
+}
 //functions which stops the baby from running
 void ManchesterBaby::STP()
 {
