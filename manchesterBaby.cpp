@@ -12,6 +12,7 @@ using namespace std;
 class ManchesterBaby
 {
 
+
 	public:
 		//Variables
 		int Store[SIZE][SIZE];
@@ -20,18 +21,19 @@ class ManchesterBaby
 		int PI[SIZE]; // holds a number which is an opcode. (plus an operand in soe cases)
     bool runStatus = true;
 
-		//constructor & deconstructor
-		ManchesterBaby();
-		~ManchesterBaby();
+    //constructor & deconstructor
+    ManchesterBaby();
+    ~ManchesterBaby();
 
 		int convertToDecimal(int binary[], int size);
 		void convertToBinary(int decimal, int binary[]);
 
 		bool load(); 
 
-		void display(); //harry
+    void display(); //harry
 
     void incrementCI(); //skye
+
 		void fetch(int); 
 		int decode(int); //james
     int getOperand(int);//james
@@ -68,11 +70,33 @@ ManchesterBaby::ManchesterBaby(){
 	}
 
 	cout<<"Manchester Baby Created and Initialised"<<endl;
+
 }
 
 ManchesterBaby::~ManchesterBaby(){
   cout<<"\nManchester Baby Stopped"<<endl;
 }
+
+
+//CI = S 
+//set CI to content of Store location  
+void ManchesterBaby::JMP(int location)
+{
+  cout<<"JMP - setting CI to content of Store at "<<location<<endl;
+ 
+  for (int i =0; i < SIZE; i++)
+  {
+    CI[i] = Store[location][i];
+  }
+  cout<<"CI: ";
+  for (int i =0; i < SIZE; i++)
+  {
+    cout << CI[i];
+  }
+  cout << endl;
+
+}
+
 
 //load program from file into memory (store)
 bool ManchesterBaby::load()
@@ -115,7 +139,7 @@ bool ManchesterBaby::load()
       cout << "Stored: " << fileline << endl;
     
     }
-	
+  
     file.close();
     return true;
 }
@@ -199,6 +223,7 @@ void ManchesterBaby::fetch(int address){
   cout<<""<<endl;
 }
 
+
 //returns a number between 0-7. instruction depends on the number.
 int ManchesterBaby::decode(int address){
   cout<<"Decoding address: "<<address<<endl;
@@ -219,19 +244,19 @@ int ManchesterBaby::getOperand(int address){
 
 //needs tested once everything else done 
 //STO - store memory address in the store 
+
 void ManchesterBaby::STO(int addressToStore)
 {
-  cout << "Store memory address: " << addressToStore << endl;
-
+  cout << "Store accumulator at: " << addressToStore << endl;
   
-  cout << "Memory is at address: ";
+  cout << "Stored: ";
   //loop through store and assign
   for (int i =0; i < SIZE; i++)
   {
     Store[addressToStore][i] = Accumulator[i];
-    //cout <<  Store[addressToStore][i] << endl;
+    cout <<  Store[addressToStore][i];
   }
-
+  cout << endl;
 }
 
 //CI = S 
@@ -265,9 +290,7 @@ int main(int argc, char const *argv[])
     myBaby.decode(i);
     myBaby.getOperand(i);
     cout<<" "<<endl;
-
   }
-  
   
   return 0;
 }
