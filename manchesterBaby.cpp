@@ -14,6 +14,7 @@ class ManchesterBaby
 
 
 	public:
+
 		//Variables
 		int Store[SIZE][SIZE];
 		int Accumulator[SIZE];
@@ -126,6 +127,7 @@ bool ManchesterBaby::load()
 
 void ManchesterBaby::display()
 {
+
       //Store display
   cout << "Store" << endl; 
   cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
@@ -144,7 +146,8 @@ void ManchesterBaby::display()
       if(Store[i][c] == 0)
         cout << " o ";
       else if(Store[i][c] == 1)
-        cout << " X ";
+        cout << "\x1B[32m X \033[0m";
+
     }
     cout << endl;
   }
@@ -156,12 +159,13 @@ void ManchesterBaby::display()
   cout << "==============|=======================|========|==============================================|" <<  endl;
   cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
 
+  cout<<"Accumulator ";
   for(int i = 0; i < 32; i++)
   {
       if(Accumulator[i] == 0)
         cout << " o ";
       else if(Accumulator[i] == 1)
-        cout << " X ";
+        cout << "\x1B[32m X \033[0m";
   }
   cout << endl;
 
@@ -170,7 +174,7 @@ void ManchesterBaby::display()
   cout << "==============|=======================|========|==============================================|" <<  endl;
   cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
 
-  cout << " Current Instruction ";
+  cout << " CI ";
   for(int i = 0; i < 32; i++)
   {
       if(CI[i] == 0)
@@ -179,7 +183,7 @@ void ManchesterBaby::display()
       }
       else if(CI[i] == 1)
       {
-        cout << " X ";
+        cout << "\x1B[32m X \033[0m";
       }
   }
   cout << endl;
@@ -191,11 +195,13 @@ void ManchesterBaby::display()
       {
           if(PI[i] == 0)
           {
+  
             cout << " o ";
           }
           else if(PI[i] == 1)
           {
-            cout << " X ";
+  
+            cout << "\x1B[32m X \033[0m";
           }
       }
   }
@@ -653,8 +659,10 @@ int main(int argc, char const *argv[])
     int opcode = myBaby.decode(index);
     int operand = myBaby.getOperand(index);
     myBaby.execute(opcode, operand);
+    myBaby.display();
     cin.get();
     
   }
+
   return 0;
 }
