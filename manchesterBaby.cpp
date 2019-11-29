@@ -4,6 +4,7 @@
 #include<fstream>
 #include <sstream>
 
+
 using namespace std;
 
 
@@ -33,7 +34,7 @@ class ManchesterBaby
 
     void display(); //harry
 
-    int incrementCI(); //skye
+    int incrementCI(); //james
 
 		void fetch(int); //james
 		int decode(int); //james
@@ -666,7 +667,7 @@ void ManchesterBaby::STP()
   runStatus = false;
 }
 
-void logo()
+void logo()//james
 {
   cout<<endl;
   cout<<endl;
@@ -684,7 +685,7 @@ void logo()
 }
 
 
-int main(int argc, char const *argv[])
+int main(int argc, char const *argv[]) //james
 {
   logo();
   ManchesterBaby myBaby;
@@ -692,7 +693,12 @@ int main(int argc, char const *argv[])
   string userInput;
   cout << "Please enter the binary files name: ";
   cin >> input;
-  myBaby.load(input);
+  bool loadStatus = myBaby.load(input);
+  if (loadStatus==false)
+  {
+    return 2;
+  }
+
   while(myBaby.runStatus == true){
     cout<<" "<<endl;
     int index = myBaby.incrementCI();
