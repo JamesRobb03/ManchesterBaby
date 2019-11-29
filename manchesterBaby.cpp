@@ -126,7 +126,79 @@ bool ManchesterBaby::load()
 
 void ManchesterBaby::display()
 {
+      //Store display
+  cout << "Store" << endl; 
+  cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
+  cout << "==============|=======================|========|==============================================|" <<  endl;
+  cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
 
+  for(int i = 0; i < 32; i++)
+  {
+    if((i)<10)
+      cout << " " << (i) << "  ";
+    else
+      cout << " " << (i) << " ";
+
+    for(int c = 0; c < 32; c++)
+    {
+      if(Store[i][c] == 0)
+        cout << " o ";
+      else if(Store[i][c] == 1)
+        cout << " X ";
+    }
+    cout << endl;
+  }
+  cout << endl;
+
+  //Accumulator display
+  cout << "Store" << endl; 
+  cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
+  cout << "==============|=======================|========|==============================================|" <<  endl;
+  cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
+
+  for(int i = 0; i < 32; i++)
+  {
+      if(Accumulator[i] == 0)
+        cout << " o ";
+      else if(Accumulator[i] == 1)
+        cout << " X ";
+  }
+  cout << endl;
+
+  cout << "Store" << endl; 
+  cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
+  cout << "==============|=======================|========|==============================================|" <<  endl;
+  cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
+
+  cout << " Current Instruction ";
+  for(int i = 0; i < 32; i++)
+  {
+      if(CI[i] == 0)
+      {
+        cout << " o ";
+      }
+      else if(CI[i] == 1)
+      {
+        cout << " X ";
+      }
+  }
+  cout << endl;
+
+  if(runStatus == true)
+  {
+    cout << " PI ";
+    for(int i = 0; i < 32; i++)
+      {
+          if(PI[i] == 0)
+          {
+            cout << " o ";
+          }
+          else if(PI[i] == 1)
+          {
+            cout << " X ";
+          }
+      }
+  }
 }
 
 int ManchesterBaby::convertToDecimal(int binary[], int size)
