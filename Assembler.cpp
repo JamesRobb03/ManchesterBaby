@@ -155,7 +155,7 @@ void Assembler::assemble()
 		{
 			lineStore[i] = new Line();
 			lineStore[i]->setLineNo(i);
-			lineStore[i]->stingSplit(store[i]);
+			lineStore[i]->stringSplit(store[i]);
 		}
 	}
 
