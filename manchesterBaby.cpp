@@ -128,9 +128,9 @@ bool ManchesterBaby::load()
 void ManchesterBaby::display()
 {
   cout << "Store" << endl; 
-  cout << "     Operand                                Opcode   " << endl;
-  cout << "     ==============|=======================|========|==============================================|" <<  endl;
-  cout << "     1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 " << endl;
+  cout << "      Operand                                Opcode   " << endl;
+  cout << "      ==============|=======================|=======|===============================================|" <<  endl;
+  cout << "      1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 " << endl;
 
   for(int i = 0; i < 32; i++)
   {
@@ -638,7 +638,7 @@ void ManchesterBaby::CMP()
   int AccuDec = convertToDecimal(Accumulator, SIZE);
   if (AccuDec < 0)
   {
-    cout << "CI BEFORE"
+    cout << "CI BEFORE";
     for (int i =0; i < SIZE; i++)
     {
       cout << CI[i];
@@ -646,7 +646,7 @@ void ManchesterBaby::CMP()
     int CIdec = convertToDecimal(CI, SIZE);
     CIdec++;
     convertToBinary(CIdec, CI);
-    cout << "CI AFTER"
+    cout << "CI AFTER";
     for (int i =0; i < SIZE; i++)
     {
       cout << CI[i];
@@ -654,7 +654,7 @@ void ManchesterBaby::CMP()
   }
   else
   {
-    cout <<"CI NOT NEGATIVE"
+    cout <<"CI NOT NEGATIVE";
   }
 }
 
