@@ -127,12 +127,10 @@ bool ManchesterBaby::load()
 
 void ManchesterBaby::display()
 {
-
-      //Store display
   cout << "Store" << endl; 
-  cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
-  cout << "==============|=======================|========|==============================================|" <<  endl;
-  cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
+  cout << "     Operand                                Opcode   " << endl;
+  cout << "     ==============|=======================|========|==============================================|" <<  endl;
+  cout << "     1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 " << endl;
 
   for(int i = 0; i < 32; i++)
   {
@@ -154,12 +152,11 @@ void ManchesterBaby::display()
   cout << endl;
 
   //Accumulator display
-  cout << "Store" << endl; 
-  cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
-  cout << "==============|=======================|========|==============================================|" <<  endl;
-  cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
+  cout << "            Operand                                Opcode   " << endl;
+  cout << "            ==============|=======================|========|==============================================|" <<  endl;
+  cout << "            1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 " << endl;
 
-  cout<<"Accumulator ";
+  cout << "Accumulator ";
   for(int i = 0; i < 32; i++)
   {
       if(Accumulator[i] == 0)
@@ -169,10 +166,9 @@ void ManchesterBaby::display()
   }
   cout << endl;
 
-  cout << "Store" << endl; 
-  cout << "Operand         Memory Bits 1-8        Opcode   Memory Bits 9-32   " << endl;
-  cout << "==============|=======================|========|==============================================|" <<  endl;
-  cout << "1  2  4  8 16  1  2  4  8 16 32 64 128 1  2  4  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16  " << endl;
+  cout << "     Operand                                Opcode   " << endl;
+  cout << "     ==============|=======================|========|==============================================|" <<  endl;
+  cout << "     1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 " << endl;
 
   cout << " CI ";
   for(int i = 0; i < 32; i++)
@@ -638,7 +634,28 @@ void ManchesterBaby::SUB(int address){
 
 void ManchesterBaby::CMP()
 {
-  cout<<"CMP function"<<endl;
+  cout<<".....USING CMP....."<<endl;
+  int AccuDec = convertToDecimal(Accumulator, SIZE);
+  if (AccuDec < 0)
+  {
+    cout << "CI BEFORE"
+    for (int i =0; i < SIZE; i++)
+    {
+      cout << CI[i];
+    }
+    int CIdec = convertToDecimal(CI, SIZE);
+    CIdec++;
+    convertToBinary(CIdec, CI);
+    cout << "CI AFTER"
+    for (int i =0; i < SIZE; i++)
+    {
+      cout << CI[i];
+    }
+  }
+  else
+  {
+    cout <<"CI NOT NEGATIVE"
+  }
 }
 
 //functions which stops the baby from running
