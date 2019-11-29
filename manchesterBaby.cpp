@@ -29,7 +29,7 @@ class ManchesterBaby
 		int convertToDecimal(int binary[], int size); //skye
 		void convertToBinary(int decimal, int binary[]);//james
 
-		bool load(); //skye
+		bool load(string); //skye
 
     void display(); //harry
 
@@ -80,16 +80,16 @@ ManchesterBaby::~ManchesterBaby(){
 
 
 //load program from file into memory (store)
-bool ManchesterBaby::load()
+bool ManchesterBaby::load(string fileToLoad)
 {
   string fileline;
   ifstream file;
-  file.open("BabyTest1-MC.txt");
+  file.open(fileToLoad);
 
   if (file.fail())
   {
     //the open failed 
-    cout << "ERROR: Could not open the file assembleroutput.txt" << endl;
+    cout << "ERROR: Could not open the file" << endl;
     return false;
   }
 
@@ -666,10 +666,33 @@ void ManchesterBaby::STP()
   runStatus = false;
 }
 
+void logo()
+{
+  cout<<endl;
+  cout<<endl;
+  cout<<"   ▄▄▄▄███▄▄▄▄      ▄████████ ███▄▄▄▄    ▄████████    ▄█    █▄       ▄████████    ▄████████     ███        ▄████████    ▄████████      ▀█████████▄     ▄████████ ▀█████████▄  ▄██   ▄   "<<endl;
+  cout<<" ▄██▀▀▀███▀▀▀██▄   ███    ███ ███▀▀▀██▄ ███    ███   ███    ███     ███    ███   ███    ███ ▀█████████▄   ███    ███   ███    ███        ███    ███   ███    ███   ███    ███ ███   ██▄ "<<endl;
+  cout<<" ███   ███   ███   ███    ███ ███   ███ ███    █▀    ███    ███     ███    █▀    ███    █▀     ▀███▀▀██   ███    █▀    ███    ███        ███    ███   ███    ███   ███    ███ ███▄▄▄███ "<<endl;
+  cout<<" ███   ███   ███   ███    ███ ███   ███ ███         ▄███▄▄▄▄███▄▄  ▄███▄▄▄       ███            ███   ▀  ▄███▄▄▄      ▄███▄▄▄▄██▀       ▄███▄▄▄██▀    ███    ███  ▄███▄▄▄██▀  ▀▀▀▀▀▀███ "<<endl;
+  cout<<" ███   ███   ███ ▀███████████ ███   ███ ███        ▀▀███▀▀▀▀███▀  ▀▀███▀▀▀     ▀███████████     ███     ▀▀███▀▀▀     ▀▀███▀▀▀▀▀        ▀▀███▀▀▀██▄  ▀███████████ ▀▀███▀▀▀██▄  ▄██   ███ "<<endl;
+  cout<<" ███   ███   ███   ███    ███ ███   ███ ███    █▄    ███    ███     ███    █▄           ███     ███       ███    █▄  ▀███████████        ███    ██▄   ███    ███   ███    ██▄ ███   ███ "<<endl;
+  cout<<" ███   ███   ███   ███    ███ ███   ███ ███    ███   ███    ███     ███    ███    ▄█    ███     ███       ███    ███   ███    ███        ███    ███   ███    ███   ███    ███ ███   ███ "<<endl;
+  cout<<"  ▀█   ███   █▀    ███    █▀   ▀█   █▀  ████████▀    ███    █▀      ██████████  ▄████████▀     ▄████▀     ██████████   ███    ███      ▄█████████▀    ███    █▀  ▄█████████▀   ▀█████▀  "<<endl;
+  cout<<"                                                                                                                       ███    ███                                                       "<<endl;
+  cout<<endl;
+  cout<<endl;
+}
+
+
 int main(int argc, char const *argv[])
 {
+  logo();
   ManchesterBaby myBaby;
-  myBaby.load();
+  string input;
+  string userInput;
+  cout << "Please enter the binary files name: ";
+  cin >> input;
+  myBaby.load(input);
   while(myBaby.runStatus == true){
     cout<<" "<<endl;
     int index = myBaby.incrementCI();
@@ -678,7 +701,12 @@ int main(int argc, char const *argv[])
     int operand = myBaby.getOperand(index);
     myBaby.execute(opcode, operand);
     myBaby.display();
-    cin.get();
+    cout<<"\nPlease enter 'n' to view next cycle or enter anything else to stop: ";
+    cin>>userInput;
+    if (userInput != "n")
+    {
+      myBaby.runStatus = false;
+    }
     
   }
 
