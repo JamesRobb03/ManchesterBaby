@@ -54,9 +54,9 @@ ManchesterBaby::ManchesterBaby(){
 	//init arrays
 
   //create store
-	for (int i = 0; i < 32; ++i)
+	for (int i = 0; i < SIZE; ++i)
 	{
-		for (int j = 0; j < 32; ++j)
+		for (int j = 0; j < SIZE; ++j)
 		{
 			Store[i][j] = 0;
 		}
@@ -144,9 +144,9 @@ void ManchesterBaby::display()
     for(int c = 0; c < 32; c++)
     {
       if(Store[i][c] == 0)
-        cout << " o ";
+        cout << " ⬤ ";
       else if(Store[i][c] == 1)
-        cout << "\x1B[32m X \033[0m";
+        cout << "\x1B[32m ⬤ \033[0m";
 
     }
     cout << endl;
@@ -163,9 +163,9 @@ void ManchesterBaby::display()
   for(int i = 0; i < 32; i++)
   {
       if(Accumulator[i] == 0)
-        cout << " o ";
+        cout << " ⬤ ";
       else if(Accumulator[i] == 1)
-        cout << "\x1B[32m X \033[0m";
+        cout << "\x1B[32m ⬤ \033[0m";
   }
   cout << endl;
 
@@ -179,11 +179,11 @@ void ManchesterBaby::display()
   {
       if(CI[i] == 0)
       {
-        cout << " o ";
+        cout << " ⬤ ";
       }
       else if(CI[i] == 1)
       {
-        cout << "\x1B[32m X \033[0m";
+        cout << "\x1B[32m ⬤ \033[0m";
       }
   }
   cout << endl;
@@ -196,12 +196,12 @@ void ManchesterBaby::display()
           if(PI[i] == 0)
           {
   
-            cout << " o ";
+            cout << " ⬤ ";
           }
           else if(PI[i] == 1)
           {
   
-            cout << "\x1B[32m X \033[0m";
+            cout << "\x1B[32m ⬤ \033[0m";
           }
       }
   }
