@@ -634,7 +634,28 @@ void ManchesterBaby::SUB(int address){
 
 void ManchesterBaby::CMP()
 {
-  cout<<"CMP function"<<endl;
+  cout<<".....USING CMP....."<<endl;
+  int AccuDec = convertToDecimal(Accumulator, SIZE);
+  if (AccuDec < 0)
+  {
+    cout << "CI BEFORE"
+    for (int i =0; i < SIZE; i++)
+    {
+      cout << CI[i];
+    }
+    int CIdec = convertToDecimal(CI, SIZE);
+    CIdec++;
+    convertToBinary(CIdec, CI);
+    cout << "CI AFTER"
+    for (int i =0; i < SIZE; i++)
+    {
+      cout << CI[i];
+    }
+  }
+  else
+  {
+    cout <<"CI NOT NEGATIVE"
+  }
 }
 
 //functions which stops the baby from running
