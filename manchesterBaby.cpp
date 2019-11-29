@@ -654,7 +654,7 @@ int main(int argc, char const *argv[])
     int operand = myBaby.getOperand(index);
     myBaby.execute(opcode, operand);
     cin.get();
-    cout<<" "<<endl;
+    
   }
   return 0;
 }
